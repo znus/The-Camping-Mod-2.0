@@ -6,6 +6,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import rikmuld.api.tileentity.TileEntityMain;
 
 public abstract class TileEntityInventory extends TileEntityMain implements IInventory, ISidedInventory {
 

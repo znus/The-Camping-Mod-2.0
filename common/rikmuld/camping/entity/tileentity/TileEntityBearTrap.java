@@ -15,13 +15,13 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.core.lib.ConfigInfo;
 import rikmuld.camping.core.lib.ConfigInfo.ConfigInfoBoolean;
 import rikmuld.camping.core.register.ModAchievements;
 import rikmuld.camping.core.register.ModDamageSources;
 import rikmuld.camping.core.register.ModItems;
 import rikmuld.camping.core.register.ModPotions;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketItems;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
@@ -137,7 +137,7 @@ public class TileEntityBearTrap extends TileEntityInventory{
 	public void onInventoryChanged()
 	{
 		super.onInventoryChanged();
-		if(!worldObj.isRemote)PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketItems(0, xCoord, yCoord, zCoord, this.getStackInSlot(0))));
+		if(!worldObj.isRemote)PacketUtil.sendToAllPlayers(new PacketItems(0, xCoord, yCoord, zCoord, this.getStackInSlot(0)));
 	}
 
 	@Override

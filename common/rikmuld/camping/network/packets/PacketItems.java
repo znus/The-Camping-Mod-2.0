@@ -7,8 +7,8 @@ import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
+import rikmuld.api.network.packets.PacketMain;
 import rikmuld.camping.entity.tileentity.TileEntityInventory;
-import rikmuld.camping.network.PacketTypeHandler;
 
 public class PacketItems extends PacketMain {
 
@@ -20,12 +20,12 @@ public class PacketItems extends PacketMain {
 
 	public PacketItems()
 	{
-		super(PacketTypeHandler.ITEMS, true);
+		super(true);
 	}
 
 	public PacketItems(int slot, int x, int y, int z, ItemStack stack)
 	{
-		super(PacketTypeHandler.ITEMS, true);
+		super(true);
 		
 		this.slot = slot;
 		this.x = x;

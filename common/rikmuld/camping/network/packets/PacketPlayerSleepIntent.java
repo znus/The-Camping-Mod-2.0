@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
+import rikmuld.api.network.packets.PacketMain;
 import rikmuld.camping.entity.tileentity.TileEntityTent;
-import rikmuld.camping.network.PacketTypeHandler;
 
 public class PacketPlayerSleepIntent extends PacketMain {
 
@@ -17,12 +17,12 @@ public class PacketPlayerSleepIntent extends PacketMain {
 	
 	public PacketPlayerSleepIntent()
 	{
-		super(PacketTypeHandler.SLEEP, false);
+		super(false);
 	}
 
 	public PacketPlayerSleepIntent(int x, int y, int z)
 	{
-		super(PacketTypeHandler.SLEEP, false);
+		super(false);
 		this.x = x;
 		this.y = y;
 		this.z = z;

@@ -1,7 +1,7 @@
 package rikmuld.camping.entity.tileentity;
 
-import net.minecraft.tileentity.TileEntity;
+import rikmuld.api.tileentity.TileEntityMain;
 
-public class TileEntityAntlerThrophy extends TileEntity {
+public class TileEntityAntlerThrophy extends TileEntityMain {
 
 }

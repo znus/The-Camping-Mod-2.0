@@ -1,6 +1,7 @@
 package rikmuld.camping.entity.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
+import rikmuld.api.tileentity.TileEntityMain;
 
 public class TileEntityLantern extends TileEntityMain{
 

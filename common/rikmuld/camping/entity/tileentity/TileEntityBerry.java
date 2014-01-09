@@ -3,6 +3,7 @@ package rikmuld.camping.entity.tileentity;
 import java.util.Random;
 
 import net.minecraft.nbt.NBTTagCompound;
+import rikmuld.api.tileentity.TileEntityMain;
 
 public class TileEntityBerry extends TileEntityMain {
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import rikmuld.api.tileentity.TileEntityMain;
 import rikmuld.camping.core.util.CampingInvUtil;
 
 public class TileEntityLight extends TileEntityMain {

@@ -11,14 +11,13 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.CampingMod;
 import rikmuld.camping.core.lib.GuiInfo;
 import rikmuld.camping.core.lib.TextureInfo;
 import rikmuld.camping.core.register.ModAchievements;
 import rikmuld.camping.core.register.ModItems;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketOpenGui;
-import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiScreenInvExtention extends GuiScreen {
 
@@ -94,7 +93,7 @@ public class GuiScreenInvExtention extends GuiScreen {
 			{
 				clickReady = false;
 				
-				if(id!=GuiInfo.GUI_CAMPINV_BACK)PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketOpenGui(GuiInfo.GUI_CAMPINV_BACK)));
+				if(id!=GuiInfo.GUI_CAMPINV_BACK)PacketUtil.sendToSever(new PacketOpenGui(GuiInfo.GUI_CAMPINV_BACK));
 				else
 				{
 					player.closeScreen();
@@ -111,7 +110,7 @@ public class GuiScreenInvExtention extends GuiScreen {
 			{
 				clickReady = false;
 			
-				if(id!=GuiInfo.GUI_CAMPINV_TOOL)PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketOpenGui(GuiInfo.GUI_CAMPINV_TOOL)));
+				if(id!=GuiInfo.GUI_CAMPINV_TOOL)PacketUtil.sendToSever(new PacketOpenGui(GuiInfo.GUI_CAMPINV_TOOL));
 				else
 				{
 					player.closeScreen();

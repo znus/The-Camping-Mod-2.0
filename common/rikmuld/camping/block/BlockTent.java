@@ -19,6 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.core.lib.GuiInfo;
 import rikmuld.camping.core.register.ModAchievements;
 import rikmuld.camping.core.register.ModBlocks;
@@ -28,7 +29,6 @@ import rikmuld.camping.core.util.ItemStackUtil;
 import rikmuld.camping.entity.tileentity.TileEntityRotation;
 import rikmuld.camping.entity.tileentity.TileEntityTent;
 import rikmuld.camping.misc.bounds.BoundsTracker;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketOpenGui;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
@@ -97,7 +97,7 @@ public class BlockTent extends BlockRotationMain {
 			}	
 			else
 			{
-				PacketDispatcher.sendPacketToPlayer(PacketTypeHandler.populatePacket(new PacketOpenGui(GuiInfo.GUI_TENT, x, y, z)), (Player) player);
+				PacketUtil.sendToPlayer(new PacketOpenGui(GuiInfo.GUI_TENT, x, y, z), (Player) player);
 				return true;
 			}
 		}

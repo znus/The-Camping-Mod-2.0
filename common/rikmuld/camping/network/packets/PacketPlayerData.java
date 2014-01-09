@@ -7,7 +7,7 @@ import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
-import rikmuld.camping.network.PacketTypeHandler;
+import rikmuld.api.network.packets.PacketMain;
 
 public class PacketPlayerData extends PacketMain {
 
@@ -15,12 +15,12 @@ public class PacketPlayerData extends PacketMain {
 
 	public PacketPlayerData()
 	{
-		super(PacketTypeHandler.DATA, false);
+		super(false);
 	}
 
 	public PacketPlayerData(NBTTagCompound tag)
 	{
-		super(PacketTypeHandler.DATA, false);
+		super(false);
 		this.data = tag;
 	}
 

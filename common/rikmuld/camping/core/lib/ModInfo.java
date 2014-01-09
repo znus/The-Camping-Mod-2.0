@@ -8,5 +8,4 @@ public class ModInfo {
 	public static final String MOD_DEPENDENCIES = "required-after:Forge@[v9.11.0.899,)";
 	public static final String MOD_SERVER_PROXY = "rikmuld.camping.core.proxys.CommonProxy";
 	public static final String MOD_CLIENT_PROXY = "rikmuld.camping.core.proxys.ClientProxy";
-	public static final String PACKET_CHANEL = MOD_ID;
 }

@@ -1,10 +1,10 @@
 package rikmuld.camping.entity.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
+import rikmuld.api.network.PacketUtil;
+import rikmuld.api.tileentity.TileEntityMain;
 import rikmuld.camping.misc.bounds.Bounds;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketBounds;
-import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class TileEntityBounds extends TileEntityMain {
 
@@ -20,7 +20,7 @@ public class TileEntityBounds extends TileEntityMain {
 	{
 		if(!worldObj.isRemote&&update)
 		{
-			PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketBounds(bounds, xCoord, yCoord, zCoord)));
+			PacketUtil.sendToAllPlayers(new PacketBounds(bounds, xCoord, yCoord, zCoord));
 			update=false;
 		}
 	}

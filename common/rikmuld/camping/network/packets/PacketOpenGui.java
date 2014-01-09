@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
+import rikmuld.api.network.packets.PacketMain;
 import rikmuld.camping.CampingMod;
-import rikmuld.camping.network.PacketTypeHandler;
 
 public class PacketOpenGui extends PacketMain {
 
@@ -18,18 +18,18 @@ public class PacketOpenGui extends PacketMain {
 	
 	public PacketOpenGui()
 	{
-		super(PacketTypeHandler.OPENGUI, false);
+		super(false);
 	}
 
 	public PacketOpenGui(int id)
 	{
-		super(PacketTypeHandler.OPENGUI, false);
+		super(false);
 		this.id = id;
 	}
 	
 	public PacketOpenGui(int id, int x, int y, int z)
 	{
-		super(PacketTypeHandler.OPENGUI, false);
+		super(false);
 		this.id = id;
 		this.x = x;
 		this.y = y;

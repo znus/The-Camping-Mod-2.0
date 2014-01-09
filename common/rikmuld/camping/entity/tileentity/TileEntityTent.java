@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EnumStatus;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import rikmuld.camping.core.register.ModAchievements;
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.core.register.ModBlocks;
 import rikmuld.camping.core.register.ModStructures;
 import rikmuld.camping.core.util.ItemStackUtil;
@@ -17,9 +17,7 @@ import rikmuld.camping.inventory.slot.SlotState;
 import rikmuld.camping.misc.bounds.Bounds;
 import rikmuld.camping.misc.bounds.BoundsStructure;
 import rikmuld.camping.misc.bounds.BoundsTracker;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketPlayerSleepIntent;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -444,7 +442,7 @@ public class TileEntityTent extends TileEntityRotation{
 			}
 			else player.addChatMessage("This sleeping bag is occupied!");
 		}
-		else PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketPlayerSleepIntent(xCoord, yCoord, zCoord)));
+		else PacketUtil.sendToSever(new PacketPlayerSleepIntent(xCoord, yCoord, zCoord));
 	}
 
 	public void setSlideState(int slideState) 

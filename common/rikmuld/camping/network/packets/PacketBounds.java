@@ -6,9 +6,9 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
+import rikmuld.api.network.packets.PacketMain;
 import rikmuld.camping.entity.tileentity.TileEntityBounds;
 import rikmuld.camping.misc.bounds.Bounds;
-import rikmuld.camping.network.PacketTypeHandler;
 
 public class PacketBounds extends PacketMain {
 
@@ -25,12 +25,12 @@ public class PacketBounds extends PacketMain {
 		
 	public PacketBounds()
 	{
-		super(PacketTypeHandler.BOUNDS, true);
+		super(true);
 	}
 
 	public PacketBounds(Bounds bounds, int x, int y, int z)
 	{
-		super(PacketTypeHandler.BOUNDS, true);
+		super(true);
 		this.x = x;
 		this.y = y;
 		this.z = z;

@@ -5,6 +5,10 @@ import java.util.logging.Level;
 
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
+import rikmuld.api.core.loader.RikMuldAPIMod;
+import rikmuld.api.core.loader.RikMuldAPIMod.RikMuldAPIPostStartupInitalation;
+import rikmuld.api.core.loader.RikMuldAPIMod.RikMuldAPIPreStartupInitalation;
+import rikmuld.api.core.register.MainRegistry;
 import rikmuld.camping.core.handler.CraftHandler;
 import rikmuld.camping.core.handler.EventsHandler;
 import rikmuld.camping.core.handler.PlayerHandler;
@@ -19,12 +23,12 @@ import rikmuld.camping.core.register.ModEntitys;
 import rikmuld.camping.core.register.ModItems;
 import rikmuld.camping.core.register.ModLogger;
 import rikmuld.camping.core.register.ModModels;
+import rikmuld.camping.core.register.ModPackets;
 import rikmuld.camping.core.register.ModPotions;
 import rikmuld.camping.core.register.ModRecipes;
 import rikmuld.camping.core.register.ModStructures;
-import rikmuld.camping.core.register.ModTabs;
 import rikmuld.camping.core.register.ModTileentitys;
-import rikmuld.camping.network.PacketHandler;
+import rikmuld.camping.misc.creativeTab.TabMain;
 import rikmuld.camping.world.WorldGen;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -38,14 +42,30 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
+@RikMuldAPIMod
 @Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = ModInfo.MOD_DEPENDENCIES)
-@NetworkMod(channels = {ModInfo.PACKET_CHANEL}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class CampingMod {
 	
 	@Instance(ModInfo.MOD_ID)
 	public static CampingMod instance;
 	@SidedProxy(clientSide = ModInfo.MOD_CLIENT_PROXY, serverSide = ModInfo.MOD_SERVER_PROXY)
 	public static CommonProxy proxy;
+	
+	@RikMuldAPIPreStartupInitalation
+	public void librarySetup()
+	{
+		
+	}
+	
+	@RikMuldAPIPostStartupInitalation
+	public void registry()
+	{
+		ModTileentitys.init();
+		ModPackets.init();
+		MainRegistry.registerGlobalModCreativeTab(new TabMain(ModInfo.MOD_NAME), ModInfo.MOD_NAME);
+	}
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -71,10 +91,8 @@ public class CampingMod {
 		MinecraftForge.EVENT_BUS.register(new EventsHandler());
 		GameRegistry.registerCraftingHandler(new CraftHandler());
 		GameRegistry.registerWorldGenerator(new WorldGen());
-
+		
 		ModEntitys.init();
-		ModTabs.init();
-		ModTileentitys.init();
 		ModRecipes.init();
 		ModCookingEquipment.init();
 		ModStructures.init();

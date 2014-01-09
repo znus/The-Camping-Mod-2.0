@@ -9,13 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.CampingMod;
 import rikmuld.camping.core.lib.GuiInfo;
 import rikmuld.camping.core.lib.TextureInfo;
 import rikmuld.camping.entity.tileentity.TileEntityTent;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketOpenGui;
-import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiScreenTent extends GuiScreen {
 
@@ -90,14 +89,14 @@ public class GuiScreenTent extends GuiScreen {
 		
 		if(this.isPointInRegion(102, 78, 51, 53, mouseX, mouseY, guiLeft, guiTop)&&tent.chests>0)
 		{
-			if(Mouse.isButtonDown(0)&&this.canClick[1]) PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketOpenGui(GuiInfo.GUI_TENT_CHESTS, tent.xCoord, tent.yCoord, tent.zCoord)));
+			if(Mouse.isButtonDown(0)&&this.canClick[1]) PacketUtil.sendToSever(new PacketOpenGui(GuiInfo.GUI_TENT_CHESTS, tent.xCoord, tent.yCoord, tent.zCoord));
 			if(!Mouse.isButtonDown(0))this.canClick[1] = true;
 		}
 		else this.canClick[1] = false;
 		
 		if(this.isPointInRegion(32, 78, 51, 53, mouseX, mouseY, guiLeft, guiTop)&&tent.lanterns>0)
 		{
-			if(Mouse.isButtonDown(0)&&this.canClick[2]) PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketOpenGui(GuiInfo.GUI_TENT_LANTERN, tent.xCoord, tent.yCoord, tent.zCoord)));
+			if(Mouse.isButtonDown(0)&&this.canClick[2]) PacketUtil.sendToSever(new PacketOpenGui(GuiInfo.GUI_TENT_LANTERN, tent.xCoord, tent.yCoord, tent.zCoord));
 			if(!Mouse.isButtonDown(0))this.canClick[2] = true;
 		}
 		else this.canClick[2] = false;

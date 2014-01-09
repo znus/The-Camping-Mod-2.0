@@ -1,6 +1,6 @@
 package rikmuld.camping.core.register;
 
-import rikmuld.camping.core.lib.TileentityInfo;
+import rikmuld.api.core.register.ClassRegistry;
 import rikmuld.camping.entity.tileentity.TileEntityAntlerThrophy;
 import rikmuld.camping.entity.tileentity.TileEntityBearTrap;
 import rikmuld.camping.entity.tileentity.TileEntityBerry;
@@ -19,17 +19,17 @@ public class ModTileentitys {
 
 	public static void init()
 	{
-		GameRegistry.registerTileEntity(TileEntityCampfireCook.class, TileentityInfo.CAMPFIRE_BASE);
-		GameRegistry.registerTileEntity(TileEntityCampfireDeco.class, TileentityInfo.CAMPFIRE_DECO_NAME);
-		GameRegistry.registerTileEntity(TileEntityLight.class, TileentityInfo.LIGHT);
-		GameRegistry.registerTileEntity(TileEntityLog.class, TileentityInfo.LOG);
-		GameRegistry.registerTileEntity(TileEntityLantern.class, TileentityInfo.LANTERN);
-		GameRegistry.registerTileEntity(TileEntityRotation.class, TileentityInfo.ROTATION);
-		GameRegistry.registerTileEntity(TileEntitySleepingBag.class, TileentityInfo.SLEEPING);
-		GameRegistry.registerTileEntity(TileEntityBerry.class, TileentityInfo.BERRY);
-		GameRegistry.registerTileEntity(TileEntityTent.class, TileentityInfo.TENT);
-		GameRegistry.registerTileEntity(TileEntityBounds.class, TileentityInfo.BOUNDS);
-		GameRegistry.registerTileEntity(TileEntityBearTrap.class, TileentityInfo.BEARTRAP);
-		GameRegistry.registerTileEntity(TileEntityAntlerThrophy.class, TileentityInfo.THROPHY_ANTLER);
+		ClassRegistry.registerNewTileEntityClass(TileEntityCampfireCook.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityCampfireDeco.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityLight.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityLog.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityLantern.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityRotation.class, "rotation");
+		ClassRegistry.registerNewTileEntityClass(TileEntitySleepingBag.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityBerry.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityTent.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityBounds.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityBearTrap.class);
+		ClassRegistry.registerNewTileEntityClass(TileEntityAntlerThrophy.class);
 	}
 }

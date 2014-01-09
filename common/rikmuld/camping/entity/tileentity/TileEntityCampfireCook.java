@@ -7,13 +7,13 @@ import java.util.Random;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.core.register.ModItems;
 import rikmuld.camping.core.util.ItemStackUtil;
 import rikmuld.camping.inventory.slot.SlotCooking;
 import rikmuld.camping.item.ItemParts;
 import rikmuld.camping.misc.cooking.CookingEquipment;
 import rikmuld.camping.misc.cooking.CookingEquipmentList;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketItems;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -90,16 +90,10 @@ public class TileEntityCampfireCook extends TileEntityInventory {
 				
 				if(this.cookProgress[i]>=this.equipment.cookTime)
 				{
-					if(this.equipment.canCook(this.getStackInSlot(i+2).itemID, this.getStackInSlot(i+2).getItemDamage()))
-					{
-						this.setInventorySlotContents(i+2,  this.equipment.cookableFoood.get(Arrays.asList(getStackInSlot(i+2).itemID, getStackInSlot(i+2).getItemDamage())).copy());
-						PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketItems(i+2, xCoord, yCoord, zCoord, this.getStackInSlot(i+2))));
-					}
-					else
-					{
-						this.setInventorySlotContents(i+2, new ItemStack(ModItems.parts, 1, ItemParts.ASH));
-						PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketItems(i+2, xCoord, yCoord, zCoord, this.getStackInSlot(i+2))));
-					}					
+					if(this.equipment.canCook(this.getStackInSlot(i+2).itemID, this.getStackInSlot(i+2).getItemDamage()))this.setInventorySlotContents(i+2,  this.equipment.cookableFoood.get(Arrays.asList(getStackInSlot(i+2).itemID, getStackInSlot(i+2).getItemDamage())).copy());
+					else this.setInventorySlotContents(i+2, new ItemStack(ModItems.parts, 1, ItemParts.ASH));
+					
+					PacketUtil.sendToAllPlayers(new PacketItems(i+2, xCoord, yCoord, zCoord, this.getStackInSlot(i+2)));
 					this.cookProgress[i] = 0;
 				}
 			}

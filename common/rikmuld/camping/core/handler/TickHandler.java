@@ -6,30 +6,27 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
+import rikmuld.api.network.PacketUtil;
 import rikmuld.camping.CampingMod;
 import rikmuld.camping.client.gui.container.GuiContainerPlayerInv;
 import rikmuld.camping.core.lib.ConfigInfo;
+import rikmuld.camping.core.lib.ConfigInfo.ConfigInfoBoolean;
 import rikmuld.camping.core.lib.GuiInfo;
 import rikmuld.camping.core.lib.ModInfo;
-import rikmuld.camping.core.lib.ConfigInfo.ConfigInfoBoolean;
 import rikmuld.camping.core.register.ModAchievements;
 import rikmuld.camping.core.register.ModBlocks;
 import rikmuld.camping.core.register.ModItems;
-import rikmuld.camping.core.register.ModLogger;
 import rikmuld.camping.core.util.CampingInvUtil;
 import rikmuld.camping.core.util.ItemStackUtil;
 import rikmuld.camping.entity.tileentity.TileEntityCampfireCook;
 import rikmuld.camping.item.ItemParts;
-import rikmuld.camping.network.PacketTypeHandler;
 import rikmuld.camping.network.packets.PacketMap;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
 public class TickHandler implements ITickHandler {
@@ -80,7 +77,7 @@ public class TickHandler implements ITickHandler {
 			if(!world.isRemote&&CampingInvUtil.hasMap(player))
 			{				
 				MapData data = CampingInvUtil.getMapData(player);
-				PacketDispatcher.sendPacketToPlayer(PacketTypeHandler.populatePacket(new PacketMap(data.scale, data.xCenter, data.zCenter, data.colors)), (Player) player);
+				PacketUtil.sendToPlayer(new PacketMap(data.scale, data.xCenter, data.zCenter, data.colors), (Player) player);
 			}
 			
 			if(!world.isRemote&&player.getCurrentEquippedItem()!=null&&player.getCurrentEquippedItem().itemID == ModItems.parts.itemID&&player.getCurrentEquippedItem().getItemDamage()==ItemParts.MARSHMALLOW_STICK)

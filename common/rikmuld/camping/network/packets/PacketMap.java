@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
+import rikmuld.api.network.packets.PacketMain;
 import rikmuld.camping.core.handler.EventsHandler;
-import rikmuld.camping.network.PacketTypeHandler;
 
 public class PacketMap extends PacketMain {
 
@@ -18,12 +18,12 @@ public class PacketMap extends PacketMain {
 
 	public PacketMap()
 	{
-		super(PacketTypeHandler.MAP, false);
+		super(false);
 	}
 
 	public PacketMap(int scale, int x, int z, byte[] colours)
 	{
-		super(PacketTypeHandler.MAP, false);
+		super(false);
 		
 		this.x = x;
 		this.z = z;
